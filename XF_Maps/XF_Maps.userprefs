@@ -1,0 +1,14 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.05d3c2fe00611472" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="XF_Maps/ButtonPage.cs">
+    <Files>
+      <File FileName="XF_Maps/App.cs" Line="13" Column="13" />
+      <File FileName="XF_Maps/ButtonPage.cs" Line="60" Column="60" />
+      <File FileName="XF_Maps/InputPage.cs" Line="15" Column="15" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
