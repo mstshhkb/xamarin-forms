@@ -38,6 +38,7 @@ namespace XF_Maps
 
             Content = new StackLayout
             {
+                Padding = new Thickness (0, 20, 0, 0),
                 Orientation = StackOrientation.Vertical,
                 Children =
                 {

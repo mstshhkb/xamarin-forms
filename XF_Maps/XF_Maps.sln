@@ -69,6 +69,6 @@ Global
 		{58B683EA-372B-4A69-82CD-56C1CB98CBD6}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Android\XF_Maps.Android.csproj
+		StartupItem = iOS\XF_Maps.iOS.csproj
 	EndGlobalSection
 EndGlobal
