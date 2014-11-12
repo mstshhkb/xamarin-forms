@@ -14,9 +14,9 @@ namespace XF_Maps
             var position = new Position(35.685402, 139.752826);
             map.MoveToRegion(new MapSpan(position, 0.01, 0.01));
 
-            var buttonTokyo = new Button{ Text = "Tokyo" };
-            var buttonXLsoft = new Button { Text = "XLsoft" };
-            var buttonXamarin = new Button { Text = "Xamarin" };
+            var buttonTokyo = new Button{ Text = "Tokyo", HorizontalOptions = LayoutOptions.FillAndExpand };
+            var buttonXLsoft = new Button { Text = "XLsoft", HorizontalOptions = LayoutOptions.FillAndExpand };
+            var buttonXamarin = new Button { Text = "Xamarin", HorizontalOptions = LayoutOptions.FillAndExpand };
 
             buttonTokyo.Clicked += HandleClicked;
             buttonXLsoft.Clicked += HandleClicked;
