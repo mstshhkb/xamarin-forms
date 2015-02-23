@@ -12,7 +12,7 @@ namespace XF_GetJson
         public App()
         {
             // The root page of your application
-            MainPage = new NavigationPage(new MainPageCS());
+            MainPage = new NavigationPage(new MainPage());
         }
 
         protected override void OnStart()
