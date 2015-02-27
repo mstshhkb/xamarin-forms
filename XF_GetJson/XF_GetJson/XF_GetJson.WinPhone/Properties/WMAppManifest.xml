@@ -2,7 +2,7 @@
 
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US"/>
-  <App xmlns="" ProductID="{472d8571-8a87-4f8d-aba4-06ef1294012f}" Title="XF_GetJson.WinPhone" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="XF_GetJson.WinPhone author" Description="Sample description" Publisher="XF_GetJson.WinPhone" PublisherID="{39dda13b-b4c1-4740-b9fa-fc39a0cfbee3}">
+  <App xmlns="" ProductID="{79e016f3-34c2-4ce4-9bfc-2d54e185d62b}" Title="XF_GetJson.WinPhone" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal"  Author="XF_GetJson.WinPhone author" Description="Sample description" Publisher="XF_GetJson.WinPhone" PublisherID="{f2a7355a-8764-4367-87ca-8a5e148f88ef}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING"/>
