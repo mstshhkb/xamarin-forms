@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListViewSample.ListXaml">
+  <ListView x:Name="list"
+            VerticalOptions="FillAndExpand"
+            ItemsSource="{Binding}"
+            ItemTapped="OnItemTapped">
+    <!-- // BindingContext が配列の場合は、ItemTemplate 不要 -->
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <!-- 単純にテキストセルで表示する場合 -->
+        <!--<TextCell Text="{Binding Name}" Detail="{Binding Age}" />-->
+        <!-- ViewCell でカスタムセルを表示する場合 -->
+        <ViewCell>
+          <StackLayout Orientation="Horizontal"
+                       Padding="5">
+            <Label FontAttributes="Bold"
+                   Text="{Binding Name}" />
+            <Label TextColor="Navy"
+                   Text="{Binding Age}" />
+          </StackLayout>
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>
+
+
+
+  
+  <!--<ListView x:Name="list"
+            VerticalOptions="FillAndExpand"
+            ItemsSource="{Binding person}">
+    <ListView.ItemTemplate>
+      <DataTemplate>
+        <ViewCell>
+          <Label Text="{Binding}" />
+        </ViewCell>
+      </DataTemplate>
+    </ListView.ItemTemplate>
+  </ListView>-->
+  
+</ContentPage>
