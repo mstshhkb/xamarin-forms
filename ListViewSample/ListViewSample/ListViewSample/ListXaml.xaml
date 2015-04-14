@@ -24,20 +24,4 @@
       </DataTemplate>
     </ListView.ItemTemplate>
   </ListView>
-
-
-
-  
-  <!--<ListView x:Name="list"
-            VerticalOptions="FillAndExpand"
-            ItemsSource="{Binding person}">
-    <ListView.ItemTemplate>
-      <DataTemplate>
-        <ViewCell>
-          <Label Text="{Binding}" />
-        </ViewCell>
-      </DataTemplate>
-    </ListView.ItemTemplate>
-  </ListView>-->
-  
 </ContentPage>
