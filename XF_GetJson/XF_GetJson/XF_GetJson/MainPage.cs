@@ -11,6 +11,9 @@ namespace XF_GetJson
     public class MainPage : ContentPage
     {
         private ListView list;
+        private ActivityIndicator indicator;
+        //private IEnumerable<EventInfo> eventinfo;
+
 
         public MainPage()
         {
@@ -22,30 +25,74 @@ namespace XF_GetJson
             var dateto = new DatePicker
             {
                 Format = "yyyy/M/d",
-                Date = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day + 7),
+                Date = DateTime.Now.AddDays(3),
+            };
+            datefrom.PropertyChanged += (object sender, System.ComponentModel.PropertyChangedEventArgs e) => {
+                dateto.Date = datefrom.Date.AddDays(3);
             };
             var button = new Button
             {
-                Text = "Get Json!",
+                Text = "取得",
                 HorizontalOptions = LayoutOptions.FillAndExpand,
+            };
+
+            indicator = new ActivityIndicator
+            {
+                Color = Color.Default,
+                IsRunning = false,
+                IsVisible = false,
+            };
+
+            var memo = new Label
+            {
+                Text = "Connpass, ATND, DoorKeeper から指定した日付のイベントをリストします。",
             };
 
             list = new ListView
             {
                 VerticalOptions = LayoutOptions.FillAndExpand,
-                // IsVisible = false
+                IsVisible = false
             };
 
+            Title = "IT勉強会検索";
+            Content = new StackLayout
+            {
+                Padding = 3,
+                Children = { 
+                    new StackLayout { 
+                        Orientation = StackOrientation.Horizontal, 
+                        Children = {
+                            datefrom,
+                            new Label { Text = "~", VerticalOptions = LayoutOptions.Center, },
+                            dateto,
+                            button,
+                        },
+                    },
+                    indicator,
+                    memo,
+                    list,
+                },
+            };
+
+            // button Tap 時の動作
             button.Clicked += async (sender, e) =>
             {
-                var atroot = await GetJson.GetAtnd.GetJson(datefrom.Date, dateto.Date);
-                var cproot = await GetJson.GetConnpass.GetJson(datefrom.Date, dateto.Date);
-                var dkroot = await GetJson.GetDoorkeeper.GetJson(datefrom.Date, dateto.Date);
+                memo.IsVisible = false;
+                list.IsVisible = false;
+                indicator.IsRunning = true;
+                indicator.IsVisible = true;
+
+                var atroot = await GetAtnd.GetJson(datefrom.Date, dateto.Date);
+                var cproot = await GetConnpass.GetJson(datefrom.Date, dateto.Date);
+                var dkroot = await GetDoorkeeper.GetJson(datefrom.Date, dateto.Date);
+
+                //ShowTitles(root);
                 var eventinfo = (from x in atroot.events
+                                 where !(x._event.title.Contains("恋活") || x._event.title.Contains("婚活") ||x._event.title.Contains("パーティ") ||x._event.title.Contains("Party") ||x._event.title.Contains("副業") ||x._event.title.Contains("グルメ") )
                                  select new EventInfo
                                  {
                                      site = "ATND",
-                                     daystring = x._event.started_at.ToString("MM/dd HH:mm"),
+                                     daystring = string.Format("{0}~{1}", x._event.started_at.ToString("MM/dd HH:mm"), x._event.ended_at.ToString("HH:mm")),
                                      title = x._event.title,
                                      event_uri = x._event.event_url,
                                      start_at = x._event.started_at,
@@ -57,7 +104,7 @@ namespace XF_GetJson
                                 select new EventInfo
                                 {
                                     site = "Connpass",
-                                    daystring = x.started_at.ToString("MM/dd HH:mm"),
+                                    daystring = string.Format("{0}~{1}", x.started_at.ToString("MM/dd HH:mm"), x.ended_at.ToString("HH:mm")),
                                     title = x.title,
                                     event_uri = x.event_url,
                                     start_at = x.started_at,
@@ -69,92 +116,145 @@ namespace XF_GetJson
                                 select new EventInfo
                                 {
                                     site = "DoorKeeper",
-                                    daystring = x.events.starts_at.ToLocalTime().ToString("MM/dd HH:mm"),
+                                    daystring = string.Format("{0}~{1}", x.events.starts_at.ToLocalTime().ToString("MM/dd HH:mm"), x.events.ends_at.ToLocalTime().ToString("HH:mm")),
                                     title = x.events.title,
                                     event_uri = x.events.public_url,
                                     start_at = x.events.starts_at.ToLocalTime(),
                                     end_at = x.events.ends_at.ToLocalTime(),
+                                    address = x.events.address,
                                     description = x.events.description
                                 }).OrderBy(ev => ev.start_at);
 
+                indicator.IsRunning = false;
+                indicator.IsVisible = false;
+
+                list.IsVisible = true;
                 list.ItemsSource = eventinfo;
                 list.ItemTemplate = new DataTemplate(typeof(EventCell));
                 list.RowHeight = EventCell.RowHeight;
-
-                //foreach (var x in eventinfo)
-                //{
-                //    var hap = new HtmlAgilityPack.HtmlDocument();
-                //    hap.LoadHtml(x.description);
-                //    var doc = hap.DocumentNode.InnerText;
-                //    doc = doc.Replace("\r", " ").Replace("\n", " ");
-                //    if (doc.Length > 50)
-                //    {
-                //        doc = doc.Substring(0, 50) + "...";
-                //    }
-                //    Console.WriteLine(string.Format(
-                //        "サイト:\t{0}\n名称:\t{1}\nURL:\t{2}\n日時:\t{3}\n\t{4}\n場所:\t{5}\n内容:\t{6}\n",
-                //        x.site, x.title, x.event_uri, x.start_at, x.end_at, x.address, doc));
-                //}
-
-                //ShowTitles(root);
-
-
             };
 
             // ItemTapped 時の処理
-            list.ItemTapped += async (object sender, ItemTappedEventArgs e) => {
+            list.ItemTapped += async (object sender, ItemTappedEventArgs e) =>
+            {
                 // Item の選択解除
                 list.SelectedItem = null;
                 // DetailPage にタップした Item の元データを List として渡します
                 await Navigation.PushAsync(new DetailPage(e.Item as EventInfo));
             };
 
-            Title = "IT勉強会検索";
-            Content = new StackLayout
-            {
-                Children = { 
-                    new StackLayout { 
-                        Orientation = StackOrientation.Horizontal, 
-                        Children = {
-                            datefrom,
-                            new Label { Text = "~", VerticalOptions = LayoutOptions.Center, },
-                            dateto,
-                            button,
-                        },
-                    },
-                    list,
-                },
-            };
-
         }
 
 
-        //private void ShowTitles(GetConnpass.Rootobject root)
+        // 画面表示時に自動的に当日から 2日後までのデータを読み込み表示
+        // TODO: Refresh 時にも呼ばれてしまうので、初回起動時のみにしたいです。。。
+        //protected override async void OnAppearing()
         //{
-        //    // LINQ
-        //    //string[] items = (from x in root.events
-        //    //                  select x.title).ToArray();
+        //    base.OnAppearing();
 
-        //    // LINQ root.events から必要な要素を抽出して List 化
-        //    var items = (from x in root.events
-        //                 select new
-        //                 {
-        //                     event_url = x.event_url,
-        //                     started_at = x.started_at.ToString("yyyy/MM/dd"),
-        //                     title = x.title,
-        //                     description = x.description,
-        //                     address = x.address
-        //                 }).ToList();
+        //    var datefrom = DateTime.Now;
+        //    var dateto = datefrom.AddDays(2);
 
-        //    list.ItemsSource = items;
+        //    indicator.IsRunning = true;
+        //    indicator.IsVisible = true;
+
+        //    var atroot = await GetAtnd.GetJson(datefrom.Date, dateto.Date);
+        //    var cproot = await GetConnpass.GetJson(datefrom.Date, dateto.Date);
+        //    var dkroot = await GetDoorkeeper.GetJson(datefrom.Date, dateto.Date);
+            
+        //    //ShowTitles(atroot, cproot, dkroot);
+        //    var eventinfo = (from x in atroot.events
+        //                     select new EventInfo
+        //                     {
+        //                         site = "ATND",
+        //                         daystring = string.Format("{0}~{1}", x._event.started_at.ToString("MM/dd HH:mm"), x._event.ended_at.ToString("HH:mm")),
+        //                         title = x._event.title,
+        //                         event_uri = x._event.event_url,
+        //                         start_at = x._event.started_at,
+        //                         end_at = x._event.ended_at,
+        //                         address = x._event.address,
+        //                         description = x._event.description
+        //                     }).Union(
+        //                    from x in cproot.events
+        //                    select new EventInfo
+        //                    {
+        //                        site = "Connpass",
+        //                        daystring = string.Format("{0}~{1}", x.started_at.ToString("MM/dd HH:mm"), x.ended_at.ToString("HH:mm")),
+        //                        title = x.title,
+        //                        event_uri = x.event_url,
+        //                        start_at = x.started_at,
+        //                        end_at = x.ended_at,
+        //                        address = x.address,
+        //                        description = x.description
+        //                    }).Union(
+        //                    from x in dkroot
+        //                    select new EventInfo
+        //                    {
+        //                        site = "DoorKeeper",
+        //                        daystring = string.Format("{0}~{1}", x.events.starts_at.ToLocalTime().ToString("MM/dd HH:mm"), x.events.ends_at.ToLocalTime().ToString("HH:mm")),
+        //                        title = x.events.title,
+        //                        event_uri = x.events.public_url,
+        //                        start_at = x.events.starts_at.ToLocalTime(),
+        //                        end_at = x.events.ends_at.ToLocalTime(),
+        //                        address = x.events.address,
+        //                        description = x.events.description
+        //                    }).OrderBy(ev => ev.start_at);
+
+        //    indicator.IsRunning = false;
+        //    indicator.IsVisible = false;
+
+        //    list.ItemsSource = eventinfo;
         //    list.ItemTemplate = new DataTemplate(typeof(EventCell));
         //    list.RowHeight = EventCell.RowHeight;
+        //}
+
+        //private void ShowTitles(GetJson.ATRoot atroot, GetJson.CPRoot cproot, GetJson.DKRoot dkroot)
+        //{
+        //    var eventinfo = (from x in atroot.events
+        //                     select new EventInfo
+        //                     {
+        //                         site = "ATND",
+        //                         daystring = x._event.started_at.ToString("MM/dd HH:mm"),
+        //                         title = x._event.title,
+        //                         event_uri = x._event.event_url,
+        //                         start_at = x._event.started_at,
+        //                         end_at = x._event.ended_at,
+        //                         address = x._event.address,
+        //                         description = x._event.description
+        //                     }).Union(
+        //                    from x in cproot.events
+        //                    select new EventInfo
+        //                    {
+        //                        site = "Connpass",
+        //                        daystring = x.started_at.ToString("MM/dd HH:mm"),
+        //                        title = x.title,
+        //                        event_uri = x.event_url,
+        //                        start_at = x.started_at,
+        //                        end_at = x.ended_at,
+        //                        address = x.address,
+        //                        description = x.description
+        //                    }).Union(
+        //                    from x in dkroot
+        //                    select new EventInfo
+        //                    {
+        //                        site = "DoorKeeper",
+        //                        daystring = x.events.starts_at.ToLocalTime().ToString("MM/dd HH:mm"),
+        //                        title = x.events.title,
+        //                        event_uri = x.events.public_url,
+        //                        start_at = x.events.starts_at.ToLocalTime(),
+        //                        end_at = x.events.ends_at.ToLocalTime(),
+        //                        description = x.events.description
+        //                    }).OrderBy(ev => ev.start_at);
+
+        //    list.ItemsSource = eventinfo;
+        //    list.ItemTemplate = new DataTemplate(typeof(EventCell));
+        //    //list.RowHeight = EventCell.RowHeight;
         //}
     }
 
 
     /// <summary>
-    /// EventInfo
+    /// 各 Json からのイベント情報を EventInfo に格納します
     /// </summary>
     public class EventInfo
     {
@@ -174,7 +274,7 @@ namespace XF_GetJson
     /// </summary>
     public class EventCell : ViewCell
     {
-        public const int RowHeight = 65;
+        public const int RowHeight = 100;
 
         public EventCell()
         {
@@ -189,7 +289,7 @@ namespace XF_GetJson
             var dateLabel = new Label { TextColor = Color.Gray };
             dateLabel.SetBinding(Label.TextProperty, "daystring");
 
-            var siteLabel = new Label { TextColor = Color.Red };
+            var siteLabel = new Label { TextColor = Color.Silver };
             siteLabel.SetBinding(Label.TextProperty, "site");
 
             var addressLabel = new Label
@@ -210,9 +310,9 @@ namespace XF_GetJson
                         Children = {
                             dateLabel,
                             siteLabel,
-                            addressLabel,
                         },
                     },
+                    addressLabel
                 },
             };
         }

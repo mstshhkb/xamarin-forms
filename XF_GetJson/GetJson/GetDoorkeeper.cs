@@ -11,7 +11,7 @@ namespace GetJson
 {
     public class GetDoorkeeper
     {
-        public static async Task<List<DKRoot>> GetJson(DateTime datefrom, DateTime dateto)
+        public static async Task<IEnumerable<DKRoot>> GetJson(DateTime datefrom, DateTime dateto)
         {
             string mainUri = "http://api.doorkeeper.jp/events/?";
 
