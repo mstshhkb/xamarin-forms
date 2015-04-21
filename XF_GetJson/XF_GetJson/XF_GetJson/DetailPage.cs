@@ -47,7 +47,6 @@ namespace XF_GetJson
                     new RowDefinition{ Height = GridLength.Auto },
                     new RowDefinition{ Height = GridLength.Auto },
                     new RowDefinition{ Height = GridLength.Auto },
-                    new RowDefinition{ Height = GridLength.Auto },
                     new RowDefinition{ Height = new GridLength(1, GridUnitType.Star) },
                 },
                 ColumnDefinitions = new ColumnDefinitionCollection {
@@ -71,34 +70,30 @@ namespace XF_GetJson
                 Text = "日時:", 
                 FontAttributes = FontAttributes.Bold, 
                 TextColor = Color.Gray
-            }, 0, 1, 2, 4 );
+            }, 0, 2 );
             grid.Children.Add(new Label { 
-                Text = items.start_at.ToString("yyyy/MM/dd HH:mm"), 
+                Text = items.daystring,
                 TextColor = Color.Gray 
             }, 1, 2);
-            grid.Children.Add(new Label {
-                Text = items.end_at.ToString("yyyy/MM/dd HH:mm"),
-                TextColor = Color.Gray
-            }, 1, 3);
             
             // Address
             grid.Children.Add(new Label { 
                 Text = "場所:", 
                 FontAttributes = FontAttributes.Bold, 
                 TextColor = Color.Gray 
-            }, 0, 4);
+            }, 0, 3);
             grid.Children.Add(new Label { 
                 Text = items.address, 
                 TextColor = Color.Gray,
                 LineBreakMode = LineBreakMode.TailTruncation 
-            }, 1, 4);
+            }, 1, 3);
 
             // Description (ScrollView)
             grid.Children.Add(new ScrollView { 
                 Content = new Label { 
                     Text = doc 
                 } 
-            }, 0, 2, 5, 6);
+            }, 0, 2, 4, 5);
 
             Content = grid;
         }

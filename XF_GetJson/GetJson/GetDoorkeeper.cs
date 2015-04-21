@@ -13,7 +13,7 @@ namespace GetJson
     {
         public static async Task<IEnumerable<DKRoot>> GetJson(DateTime datefrom, DateTime dateto)
         {
-            string mainUri = "http://api.doorkeeper.jp/events/?";
+            const string mainUri = "http://api.doorkeeper.jp/events/?";
 
             // datefrom と dateto を since=yyyy-MM-dd と until=yyyy-MM-dd に
             string subUri = string.Format("since={0}&until={1}",

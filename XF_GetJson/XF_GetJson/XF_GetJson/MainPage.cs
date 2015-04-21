@@ -86,6 +86,11 @@ namespace XF_GetJson
                 var cproot = await GetConnpass.GetJson(datefrom.Date, dateto.Date);
                 var dkroot = await GetDoorkeeper.GetJson(datefrom.Date, dateto.Date);
 
+                if (atroot == null ||cproot==null||dkroot == null)
+                {
+                    System.Diagnostics.Debug.WriteLine("Fetch data error");
+                }
+
                 //ShowTitles(root);
                 var eventinfo = (from x in atroot.events
                                  where !(x._event.title.Contains("恋活") || x._event.title.Contains("婚活") ||x._event.title.Contains("パーティ") ||x._event.title.Contains("Party") ||x._event.title.Contains("副業") ||x._event.title.Contains("グルメ") )

@@ -13,7 +13,7 @@ namespace GetJson
     {
         public static async Task<CPRoot> GetJson(DateTime datefrom, DateTime dateto)
         {
-            string mainUri = "http://connpass.com/api/v1/event/?";
+            const string mainUri = "http://connpass.com/api/v1/event/?";
 
             // datefrom から dateto までを ymd=yyyyMMdd,yyyyMMdd とパラメーターに追加
             var timespan = dateto - datefrom;

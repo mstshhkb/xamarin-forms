@@ -13,7 +13,7 @@ namespace GetJson
     {
         public static async Task<ATRoot> GetJson(DateTime datefrom, DateTime dateto)
         {
-            string mainUri = "http://api.atnd.org/events/?";
+            const string mainUri = "http://api.atnd.org/events/?";
 
             // datefrom から dateto までを ymd=yyyyMMdd,yyyyMMdd とパラメーターに追加
             var timespan = dateto - datefrom;
