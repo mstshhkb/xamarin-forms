@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XF_JsonReader.MainPage"
+             Title="社内報一覧"
+             Padding="5">
+  <StackLayout>
+    <Label x:Name="label"
+           Text="Json データを取得しています"
+           HorizontalOptions="Center" />
+    <ActivityIndicator x:Name="indicator" />
+    
+    <ListView x:Name="list"
+          VerticalOptions="FillAndExpand"
+          ItemTapped="list_ItemTapped"
+          IsVisible="False"
+          RowHeight="80">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <ViewCell.View>
+              <StackLayout Spacing="5" Orientation="Horizontal">
+                <Image Source="{Binding image_url}"
+                       MinimumHeightRequest="130" />
+                <StackLayout Orientation="Vertical" VerticalOptions="Center">
+                  <Label Text="{Binding title}"
+                         LineBreakMode="TailTruncation"
+                         FontAttributes="Bold" />
+                  <Label Text="{Binding context}"
+                         LineBreakMode="TailTruncation" />
+                </StackLayout>
+              </StackLayout>
+            </ViewCell.View>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
+  </StackLayout>
+</ContentPage>
