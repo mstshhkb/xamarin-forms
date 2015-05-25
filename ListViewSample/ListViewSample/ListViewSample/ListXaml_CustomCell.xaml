@@ -10,7 +10,7 @@
           <StackLayout Orientation="Horizontal" Padding="5">
             <Label Text="{Binding Name}"
                    Style="{DynamicResource TitleStyle}" />
-            <Label Text="{Binding Age, StringFormat='{0}才'}"
+            <Label Text="{Binding Birthday, StringFormat='{0:yyyy/MM/dd}'}"
                    TextColor="Navy"
                    VerticalOptions="Center" />
             <Image Source="{Binding Url}"

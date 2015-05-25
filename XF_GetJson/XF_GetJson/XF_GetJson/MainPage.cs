@@ -82,11 +82,30 @@ namespace XF_GetJson
                 indicator.IsRunning = true;
                 indicator.IsVisible = true;
 
-                var atroot = await GetAtnd.GetJson(datefrom.Date, dateto.Date);
-                var cproot = await GetConnpass.GetJson(datefrom.Date, dateto.Date);
-                var dkroot = await GetDoorkeeper.GetJson(datefrom.Date, dateto.Date);
+#if DEBUG
+                var sw = new System.Diagnostics.Stopwatch();
+                sw.Reset();
+                sw.Start();
+#endif
 
-                if (atroot == null ||cproot==null||dkroot == null)
+                var attask = GetAtnd.GetJson(datefrom.Date, dateto.Date);
+                var cptask = GetConnpass.GetJson(datefrom.Date, dateto.Date);
+                var dktask = GetDoorkeeper.GetJson(datefrom.Date, dateto.Date);
+
+                var atroot = await attask;
+                var cproot = await cptask;
+                var dkroot = await dktask;
+
+                //var atroot = await GetAtnd.GetJson(datefrom.Date, dateto.Date);
+                //var cproot = await GetConnpass.GetJson(datefrom.Date, dateto.Date);
+                //var dkroot = await GetDoorkeeper.GetJson(datefrom.Date, dateto.Date);
+
+#if DEBUG
+                sw.Stop();
+                System.Diagnostics.Debug.WriteLine("Elapsed time: {0}", sw.Elapsed);
+#endif
+
+                if (atroot == null || cproot == null || dkroot == null)
                 {
                     System.Diagnostics.Debug.WriteLine("Fetch data error");
                 }

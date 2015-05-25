@@ -11,5 +11,6 @@ namespace ListViewSample
         public string Name { get; set; }
         public int Age { get; set; }
         public string Url { get; set; }
+        public DateTime Birthday { get; set; }
     }
 }

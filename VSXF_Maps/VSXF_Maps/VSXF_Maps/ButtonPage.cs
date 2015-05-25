@@ -51,14 +51,33 @@ namespace VSXF_Maps
             switch (b.Text)
             {
                 case "Tokyo":
+                    map.Pins.Clear();
                     var posTokyo = new Position(35.681382, 139.766084);
                     map.MoveToRegion(new MapSpan(posTokyo, 0.01, 0.01));
+                    var pinTokyo = new Pin
+                    {
+                        Type = PinType.Place,
+                        Position = posTokyo,
+                        Label = "東京駅",
+                        Address = "〒100-0005 東京都千代田区丸の内１丁目９−１"
+                    };
+                    map.Pins.Add(pinTokyo);
                     break;
                 case "XLsoft":
+                    map.Pins.Clear();
                     var posXLsoft = new Position(35.641385, 139.740903);
                     map.MoveToRegion(new MapSpan(posXLsoft, 0.01, 0.01));
+                    var pinXLsoft = new Pin
+                    {
+                        Type = PinType.Place,
+                        Position = posXLsoft,
+                        Label = "エクセルソフト株式会社",
+                        Address = "〒108-0073 東京都港区三田３－９－９ 森伝ビル６Ｆ"
+                    };
+                    map.Pins.Add(pinXLsoft);
                     break;
                 case "Xamarin":
+                    map.Pins.Clear();
                     var posXamarin = new Position(37.797996, -122.401876);
                     map.MoveToRegion(new MapSpan(posXamarin, 0.01, 0.01));
                     break;

@@ -12,7 +12,8 @@ namespace ListViewSample
         public App()
         {
             // The root page of your application
-            MainPage = new NavigationPage(new StartPage());
+            //MainPage = new NavigationPage(new StartPage());
+            MainPage = new ListXaml_CustomCell();
         }
 
         protected override void OnStart()

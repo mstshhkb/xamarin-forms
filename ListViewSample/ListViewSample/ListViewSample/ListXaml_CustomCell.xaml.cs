@@ -18,10 +18,10 @@ namespace ListViewSample
 
             var person = new List<Person>
             {
-                new Person { Name = "Taro", Age = 18, Url = url },
-                new Person { Name = "Jiro", Age = 15, Url = url },
-                new Person { Name = "Saburo", Age = 12, Url = url },
-                new Person { Name = "Shiro", Age = 10, Url = url },
+                new Person { Name = "Taro", Birthday = new DateTime(1997, 1, 1), Url = url },
+                new Person { Name = "Jiro", Birthday = new DateTime(2000, 2, 1), Url = url },
+                new Person { Name = "Saburo", Birthday = new DateTime(2003, 3, 1), Url = url },
+                new Person { Name = "Shiro", Birthday = new DateTime(2005, 4, 1), Url = url },
             };
 
             this.BindingContext = person;
