@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XF_MvvmSample;assembly=XF_MvvmSample"
+             x:Class="XF_MvvmSample.XamlPage"
+             Padding="10, 30, 10, 10">
+  
+  <ContentPage.BindingContext>
+    <local:XamlPageViewModel />
+  </ContentPage.BindingContext>
+
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <local:S2LConverter x:Key="lengthConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+ 
+  <StackLayout Padding="20">
+    <Label Text="Mvvm Sample" 
+           FontSize="24" 
+           HorizontalOptions="FillAndExpand" />
+    <Editor Text="{Binding Name}" 
+            HorizontalOptions="FillAndExpand" />
+    <Label Text="{Binding Name, Converter={StaticResource lengthConverter}, StringFormat='Letters: {0}'}"
+           FontSize="30" 
+           HorizontalOptions="FillAndExpand" />
+  
+  </StackLayout>
+</ContentPage>

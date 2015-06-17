@@ -12,7 +12,8 @@ namespace XF_MvvmSample
         public App()
         {
             // The root page of your application
-            MainPage = new XF_MvvmSample.View.XamlPage();
+            //MainPage = new XF_MvvmSample.View.XamlPage();
+            MainPage = new XamlPage();
         }
 
         protected override void OnStart()

@@ -5,7 +5,7 @@
     <Language code="ja" />
     <Language code="ja-JP" />
   </Languages>
-  <App xmlns="" ProductID="{c4ad80f2-bc45-44f3-9563-3196d600b8e9}" Title="VSXF_Maps.WinPhone" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="VSXF_Maps.WinPhone author" Description="Sample MapApp built using Xamarin.Forms" Publisher="VSXF_Maps.WinPhone" PublisherID="{d521169b-b14c-43a0-b080-8b867254d16d}">
+  <App xmlns="" ProductID="{c4ad80f2-bc45-44f3-9563-3196d600b8e9}" Title="XF_Maps.WinPhone" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="VSXF_Maps.WinPhone author" Description="Sample MapApp built using Xamarin.Forms" Publisher="VSXF_Maps.WinPhone" PublisherID="{d521169b-b14c-43a0-b080-8b867254d16d}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
