@@ -16,13 +16,13 @@
   </ContentPage.Resources>
  
   <StackLayout Padding="20">
-    <Label Text="Mvvm Sample" 
-           FontSize="24" 
-           HorizontalOptions="FillAndExpand" />
     <Editor Text="{Binding Name}" 
             HorizontalOptions="FillAndExpand" />
+    <Label Text="{Binding Name}"
+           FontSize="30"
+           HorizontalOptions="FillAndExpand" />
     <Label Text="{Binding Name, Converter={StaticResource lengthConverter}, StringFormat='Letters: {0}'}"
-           FontSize="30" 
+           FontSize="30"
            HorizontalOptions="FillAndExpand" />
   
   </StackLayout>
