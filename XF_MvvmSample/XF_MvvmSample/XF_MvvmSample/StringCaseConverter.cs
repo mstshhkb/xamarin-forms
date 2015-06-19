@@ -16,10 +16,8 @@ namespace XF_MvvmSample
             if (value == null)
                 return 0;
 
-            // TODO: parameter に switch の bool 値を参照させる → PropertyChanged で取得、設定？
-            string param;
-            param = (string)parameter;
-            if (param == "true")
+            // TODO: parameter に switch の bool 値を参照させる → PropertyChanged で取得、設定してみた
+            if (System.Convert.ToBoolean(parameter))
             {
                 return value.ToString().ToUpper();
             }

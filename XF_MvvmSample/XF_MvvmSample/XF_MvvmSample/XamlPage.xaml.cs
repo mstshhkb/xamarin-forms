@@ -14,9 +14,16 @@ namespace XF_MvvmSample
             InitializeComponent();
 
             // コードビハインドで BindingContext を指定する場合は初期値を入れられる（？）
-            this.BindingContext = new XamlPageViewModel() { Name = "My Name" };
+            // this.BindingContext = new XamlPageViewModel() { Name = "My Name" };
 
-            
+            this.switcher.PropertyChanged += (sender, e) =>
+            {
+                this.letterlabel.SetBinding(Label.TextProperty,
+                                        new Binding("Name",
+                                                    BindingMode.Default,
+                                                    converter: new StringCaseConverter(),
+                                                    converterParameter: switcher.IsToggled));
+            };
         }
     }
 }
