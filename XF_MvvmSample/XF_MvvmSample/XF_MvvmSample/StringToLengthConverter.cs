@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace XF_MvvmSample
 {
-    class S2LConverter : IValueConverter
+    class StringToLengthConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

@@ -12,6 +12,11 @@ namespace XF_MvvmSample
         public XamlPage()
         {
             InitializeComponent();
+
+            // コードビハインドで BindingContext を指定する場合は初期値を入れられる（？）
+            this.BindingContext = new XamlPageViewModel() { Name = "My Name" };
+
+            
         }
     }
 }

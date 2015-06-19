@@ -5,23 +5,41 @@
              x:Class="XF_MvvmSample.XamlPage"
              Padding="10, 30, 10, 10">
   
+  <!-- // Xaml で BindingContext を指定する場合は初期値が null なので Converter が ０を返します -->
+  <!--
   <ContentPage.BindingContext>
     <local:XamlPageViewModel />
   </ContentPage.BindingContext>
+  -->
 
   <ContentPage.Resources>
     <ResourceDictionary>
-      <local:S2LConverter x:Key="lengthConverter" />
+      <local:StringToLengthConverter x:Key="lengthConverter" />
+      <local:StringCaseConverter x:Key="caseConverter" />
     </ResourceDictionary>
   </ContentPage.Resources>
  
-  <StackLayout Padding="20">
+  <StackLayout Padding="20, 5">
     <Editor Text="{Binding Name}" 
             HorizontalOptions="FillAndExpand" />
+    <!-- TODO: Switch の値により Upper/Lower case を切り替える -->
+    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+      <Label Text="On: Upper case" HorizontalOptions="EndAndExpand" />
+      <Switch x:Name="switcher"  />
+    </StackLayout>
     <Label Text="{Binding Name}"
            FontSize="30"
            HorizontalOptions="FillAndExpand" />
-    <Label Text="{Binding Name, Converter={StaticResource lengthConverter}, StringFormat='Letters: {0}'}"
+    <!-- TODO: caseConverter を Upper/Lower に対応させる 
+               ConverterParameter={Binding Swch} とかにしても良いのか？ -->
+    <Label Text="{Binding Name, 
+                  Converter={StaticResource caseConverter}, 
+                  ConverterParameter=true}"
+           FontSize="30"
+           HorizontalOptions="FillAndExpand" />
+    <Label Text="{Binding Name, 
+                  Converter={StaticResource lengthConverter}, 
+                  StringFormat='{0} lettes'}"
            FontSize="30"
            HorizontalOptions="FillAndExpand" />
   

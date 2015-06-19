@@ -35,11 +35,13 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="App.cs" />
-    <Compile Include="S2LConverter.cs" />
+    <Compile Include="StringCaseConverter.cs" />
+    <Compile Include="StringToLengthConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="XamlPage.xaml.cs">
       <DependentUpon>XamlPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="XamlPageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="XamlPage.xaml">
