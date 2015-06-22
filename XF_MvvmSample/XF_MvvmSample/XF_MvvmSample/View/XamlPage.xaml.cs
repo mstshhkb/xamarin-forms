@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace XF_MvvmSample
+namespace XF_MvvmSample.View
 {
     public partial class XamlPage : ContentPage
     {
@@ -13,15 +13,14 @@ namespace XF_MvvmSample
         {
             InitializeComponent();
 
-            // コードビハインドで BindingContext を指定する場合は初期値を入れられる（？）
+            // コードビハインドで BindingContext を指定する場合は初期値を入れられるみたいです。
             // this.BindingContext = new XamlPageViewModel() { Name = "My Name" };
 
             this.switcher.PropertyChanged += (sender, e) =>
             {
                 this.letterlabel.SetBinding(Label.TextProperty,
-                                        new Binding("Name",
-                                                    BindingMode.Default,
-                                                    converter: new StringCaseConverter(),
+                                        new Binding("Message",
+                                                    converter: new Converters.StringCaseConverter(),
                                                     converterParameter: switcher.IsToggled));
             };
         }

@@ -12,8 +12,7 @@ namespace XF_MvvmSample
         public App()
         {
             // The root page of your application
-            //MainPage = new XF_MvvmSample.View.XamlPage();
-            MainPage = new XamlPage();
+            MainPage = new NavigationPage(new StartPage());
         }
 
         protected override void OnStart()
@@ -29,6 +28,30 @@ namespace XF_MvvmSample
         protected override void OnResume()
         {
             // Handle when your app resumes
+        }
+    }
+
+    class StartPage : ContentPage
+    {
+        public StartPage()
+        {
+            Title = "Mvvm Sample";
+            Padding = 15;
+            Content = new StackLayout
+            {
+                Children = {
+                    new Button {
+                        Text = "Xaml",
+                        Command = new Command(async ()=> 
+                            await Navigation.PushAsync(new View.XamlPage()))
+                    },
+                    new Button {
+                        Text = "C#",
+                        Command = new Command(async ()=> 
+                            await Navigation.PushAsync(new View.CSPage()))
+                    },
+                }
+            };
         }
     }
 }

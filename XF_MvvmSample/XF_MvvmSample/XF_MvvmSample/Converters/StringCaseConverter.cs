@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace XF_MvvmSample
+namespace XF_MvvmSample.Converters
 {
     class StringCaseConverter : IValueConverter
     {
