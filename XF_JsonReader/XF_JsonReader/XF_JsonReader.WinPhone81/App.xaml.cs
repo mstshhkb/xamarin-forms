@@ -35,6 +35,9 @@ namespace XF_JsonReader.WinPhone81
         {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+
+            Application.Current.RequestedTheme = ApplicationTheme.Light;
+            this.RequestedTheme = ApplicationTheme.Light;
         }
 
         /// <summary>

@@ -4,7 +4,7 @@
   <mp:PhoneIdentity PhoneProductId="f9318885-37d3-4942-8883-b4b31cfcf30c" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>XF_JsonReader.WinPhone81</DisplayName>
-    <PublisherDisplayName>ytabuchi</PublisherDisplayName>
+    <PublisherDisplayName>Yoshito Tabuchi</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Prerequisites>

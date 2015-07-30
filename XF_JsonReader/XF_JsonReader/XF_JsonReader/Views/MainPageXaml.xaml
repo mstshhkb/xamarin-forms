@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cv="clr-namespace:XF_JsonReader.Converters;assembly=XF_JsonReader"
+             x:Class="XF_JsonReader.Views.MainPageXaml"
+             Title="社内報 Reader">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <cv:HtmlToPlainConverter x:Key="h2pConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <StackLayout VerticalOptions="FillAndExpand">
+      <!-- 最初に表示する黒いレイヤーです。-->
+      <ContentView x:Name="layerXaml"
+                   VerticalOptions="FillAndExpand"
+                   BackgroundColor="Black"
+                   Opacity="0.6">
+        <StackLayout VerticalOptions="CenterAndExpand"
+                     Spacing="40"
+                     Opacity="1">
+          <Label Text="WordPress サイトから Json データを取得しています。"
+                 TextColor="White"
+                 XAlign="Center" />
+          <ActivityIndicator Color="White"
+                             IsRunning="True"
+                             Scale="1.5" />
+        </StackLayout>
+      </ContentView>
+
+      <ListView x:Name="listViewXaml"
+                HasUnevenRows="True"
+                IsVisible="False"
+                ItemTapped="listViewXaml_ItemTapped">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <ViewCell.View>
+                <StackLayout Padding="20">
+                  <Label TextColor="#22638e"
+                         FontSize="Large"
+                         Text="{Binding title}" />
+                  <Label TextColor="#444444"
+                         Text="{Binding excerpt, Converter={StaticResource h2pConverter}}" />
+                  <Label TextColor="Gray"
+                         Text="{Binding author.name, StringFormat='作成者： {0}'}" />
+                  <Label TextColor="Gray"
+                         Text="{Binding modified, StringFormat='更新日時： {0:yyyy/MM/dd HH:mm}'}" />
+                </StackLayout>
+              </ViewCell.View>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+    </StackLayout>
+  </ContentPage.Content>
+</ContentPage>

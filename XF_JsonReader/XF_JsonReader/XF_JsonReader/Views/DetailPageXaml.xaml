@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cv="clr-namespace:XF_JsonReader.Converters;assembly=XF_JsonReader"
+             x:Class="XF_JsonReader.Views.DetailPageXaml"
+             Title="{Binding title}">
+  <ContentPage.Resources>
+    <ResourceDictionary>
+      <cv:HtmlToPlainConverter x:Key="h2pConverter" />
+    </ResourceDictionary>
+  </ContentPage.Resources>
+  <ContentPage.Content>
+    <ScrollView>
+      <ScrollView.Content>
+        <StackLayout Padding="25"
+                     Spacing="10">
+          <Label TextColor="#22638e"
+                 FontSize="Large"
+                 Text="{Binding title}" />
+          <Label TextColor="Gray"
+                 Text="{Binding author.name, StringFormat='作成者： {0}'}" />
+          <Label TextColor="Gray"
+                 Text="{Binding modified, StringFormat='更新日時： {0:yyyy/MM/dd HH:mm}'}" />
+          <Label TextColor="#4b7ee5"
+                 LineBreakMode="TailTruncation"
+                 Text="{Binding url}">
+            <BoxView.GestureRecognizers>
+              <TapGestureRecognizer Tapped="Label_Clicked" />
+            </BoxView.GestureRecognizers>
+          </Label>
+          <BoxView Color="#2d82b7"
+                   HeightRequest="1" />
+          <Label TextColor="#444444"
+                 Text="{Binding content, Converter={StaticResource h2pConverter}}" />
+        </StackLayout>
+      </ScrollView.Content>
+    </ScrollView>
+  </ContentPage.Content>
+</ContentPage>

@@ -32,6 +32,9 @@ namespace XF_JsonReader.Windows81
         {
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+
+            Application.Current.RequestedTheme = ApplicationTheme.Light;
+            this.RequestedTheme = ApplicationTheme.Light;
         }
 
         /// <summary>

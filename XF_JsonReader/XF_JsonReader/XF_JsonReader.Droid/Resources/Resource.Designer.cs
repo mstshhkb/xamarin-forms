@@ -46,14 +46,14 @@ namespace XF_JsonReader.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f030002
-			public const int colorAccent = 2130903042;
+			// aapt resource value: 0x7f040002
+			public const int colorAccent = 2130968578;
 			
-			// aapt resource value: 0x7f030000
-			public const int colorPrimary = 2130903040;
+			// aapt resource value: 0x7f040000
+			public const int colorPrimary = 2130968576;
 			
-			// aapt resource value: 0x7f030001
-			public const int colorPrimaryDark = 2130903041;
+			// aapt resource value: 0x7f040001
+			public const int colorPrimaryDark = 2130968577;
 			
 			static Color()
 			{
@@ -84,11 +84,11 @@ namespace XF_JsonReader.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f040001
-			public const int ApplicationName = 2130968577;
+			// aapt resource value: 0x7f030001
+			public const int ApplicationName = 2130903041;
 			
-			// aapt resource value: 0x7f040000
-			public const int Hello = 2130968576;
+			// aapt resource value: 0x7f030000
+			public const int Hello = 2130903040;
 			
 			static String()
 			{
