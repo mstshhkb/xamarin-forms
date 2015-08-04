@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XF_JsonReader", "XF_JsonReader\XF_JsonReader\XF_JsonReader.csproj", "{C07E9926-B4C5-465C-91D6-CC96A41681BD}"
 EndProject
@@ -108,7 +108,6 @@ Global
 		{0792E802-72BF-4792-A3BB-5C89E441A82D}.Debug|Any CPU.ActiveCfg = Debug|iPhone
 		{0792E802-72BF-4792-A3BB-5C89E441A82D}.Debug|ARM.ActiveCfg = Debug|iPhone
 		{0792E802-72BF-4792-A3BB-5C89E441A82D}.Debug|iPhone.ActiveCfg = Debug|iPhone
-		{0792E802-72BF-4792-A3BB-5C89E441A82D}.Debug|iPhone.Build.0 = Debug|iPhone
 		{0792E802-72BF-4792-A3BB-5C89E441A82D}.Debug|iPhoneSimulator.ActiveCfg = Debug|iPhoneSimulator
 		{0792E802-72BF-4792-A3BB-5C89E441A82D}.Debug|iPhoneSimulator.Build.0 = Debug|iPhoneSimulator
 		{0792E802-72BF-4792-A3BB-5C89E441A82D}.Debug|Mixed Platforms.ActiveCfg = Debug|iPhone

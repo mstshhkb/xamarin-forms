@@ -36,16 +36,59 @@
           <DataTemplate>
             <ViewCell>
               <ViewCell.View>
-                <StackLayout Padding="20">
-                  <Label TextColor="#22638e"
-                         FontSize="Large"
-                         Text="{Binding title}" />
-                  <Label TextColor="#444444"
-                         Text="{Binding excerpt, Converter={StaticResource h2pConverter}}" />
-                  <Label TextColor="Gray"
-                         Text="{Binding author.name, StringFormat='作成者： {0}'}" />
-                  <Label TextColor="Gray"
-                         Text="{Binding modified, StringFormat='更新日時： {0:yyyy/MM/dd HH:mm}'}" />
+                <StackLayout Orientation="Horizontal"
+                             Padding="10">
+                  <!-- 左側の日付表示部分は Grid で作りました。 -->
+                  <Grid Padding="1, 1, 1, 1"
+                        RowSpacing="1"
+                        ColumnSpacing="1"
+                        BackgroundColor="#dedede"
+                        VerticalOptions="Start">
+                    <!-- Grid 定義 -->
+                    <Grid.RowDefinitions>
+                      <RowDefinition Height="20" />
+                      <RowDefinition Height="50" />
+                      <RowDefinition Height="18" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                      <ColumnDefinition Width="50" />
+                    </Grid.ColumnDefinitions>
+                    <!-- Grid 内のコントール -->
+                    <Label Text="{Binding date, StringFormat='{0:MM}'}"
+                           TextColor="#fff"
+                           BackgroundColor="#76bded"
+                           FontSize="16"
+                           XAlign="Center"
+                           Grid.Row="0" Grid.Column="0" />
+                    <Label Text="{Binding date, StringFormat='{0:dd}'}"
+                           TextColor="#555"
+                           BackgroundColor="#ececec"
+                           FontSize="30"
+                           XAlign="Center"
+                           YAlign="Center"
+                           Grid.Row="1" Grid.Column="0" />
+                    <Label Text="{Binding date, StringFormat='（{0:ddd}）'}"
+                           TextColor="#333"
+                           BackgroundColor="#e3e3e3"
+                           FontSize="13"
+                           XAlign="Center"
+                           YAlign="Center"
+                           Grid.Row="2" Grid.Column="0" />
+                  </Grid>
+                  
+                  <!-- 右側は StackLayout で作りました。 -->
+                  <StackLayout Padding="10, 0, 10, 5"
+                               Spacing="5">
+                    <Label TextColor="#22638e"
+                           FontSize="Large"
+                           Text="{Binding title}" />
+                    <Label TextColor="#444444"
+                           Text="{Binding excerpt, Converter={StaticResource h2pConverter}}" />
+                    <Label TextColor="Gray"
+                           Text="{Binding author.name, StringFormat='作成者： {0}'}" />
+                    <Label TextColor="Gray"
+                           Text="{Binding date, StringFormat='登録日時： {0:yyyy/M/d H:mm}'}" />
+                  </StackLayout>
                 </StackLayout>
               </ViewCell.View>
             </ViewCell>

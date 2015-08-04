@@ -49,7 +49,7 @@ namespace XF_JsonReader.Views
             catch (Exception e)
             {
                 layerXaml.IsVisible = false;
-                DisplayAlert("エラー", "通信エラーが発生しました。", "OK");
+                await DisplayAlert("エラー", $"通信エラーが発生しました。\n{e.Message}", "OK");
             }
 
         }
