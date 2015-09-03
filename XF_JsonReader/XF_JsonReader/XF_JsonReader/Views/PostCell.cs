@@ -5,6 +5,7 @@ using System.Reflection.Emit;
 using System.Text;
 
 using Xamarin.Forms;
+using XF_JsonReader.Converters;
 
 namespace XF_JsonReader.Views
 {
@@ -26,8 +27,9 @@ namespace XF_JsonReader.Views
             {
                 TextColor = Color.FromHex("444"),
             };
-            contents.SetBinding(Label.TextProperty,
-                new Binding("excerpt", converter: new Converters.HtmlToPlainConverter()));
+            contents.SetBinding(Label.TextProperty, 
+                new Binding("excerpt", converter: new HtmlToPlainConverter()));
+
 
             var auth = new Label
             {
@@ -52,7 +54,7 @@ namespace XF_JsonReader.Views
                 XAlign = TextAlignment.Center,
             };
             hMonth.SetBinding(Label.TextProperty,
-                new Binding("modified", stringFormat: "{0:MM}"));
+                new Binding("date", stringFormat: "{0:MM}"));
             var hDay = new Label
             {
                 TextColor = Color.FromHex("555"),
@@ -62,7 +64,7 @@ namespace XF_JsonReader.Views
                 YAlign = TextAlignment.Center,
             };
             hDay.SetBinding(Label.TextProperty,
-                new Binding("modified", stringFormat: "{0:dd}"));
+                new Binding("date", stringFormat: "{0:dd}"));
             var hWeekDay = new Label
             {
                 TextColor = Color.FromHex("333"),
@@ -71,7 +73,7 @@ namespace XF_JsonReader.Views
                 XAlign = TextAlignment.Center,
             };
             hWeekDay.SetBinding(Label.TextProperty,
-                new Binding("modified", stringFormat: "（{0:ddd}）"));
+                new Binding("date", stringFormat: "（{0:ddd}）"));
 
             var grid = new Grid
             {

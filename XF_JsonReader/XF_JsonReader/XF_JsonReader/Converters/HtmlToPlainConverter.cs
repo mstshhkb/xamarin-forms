@@ -20,8 +20,8 @@ namespace XF_JsonReader.Converters
             // HtmlAgilityPack を使用してタグ付きの string からタグを除去します。
             var hap = new HtmlAgilityPack.HtmlDocument();
             hap.LoadHtml(value.ToString());
-            var doc = hap.DocumentNode.InnerText;
-            return doc.Replace("&hellip;", "…");
+            var doc = hap.DocumentNode.InnerText.Replace("&hellip;", "…");
+            return doc;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

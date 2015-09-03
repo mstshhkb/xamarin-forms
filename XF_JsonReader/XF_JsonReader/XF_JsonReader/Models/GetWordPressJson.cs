@@ -36,8 +36,18 @@ namespace XF_JsonReader.Models
             }
             catch (HttpRequestException e)
             {
+#if DEBUG
+                System.Diagnostics.Debug.WriteLine(e.InnerException);
+#endif
                 return null;
-                //throw;
+            }
+            catch (Exception e)
+            {
+#if DEBUG
+                System.Diagnostics.Debug.WriteLine(e.InnerException);
+#endif
+                return null;
+
             }
         }
     }

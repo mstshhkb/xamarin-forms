@@ -68,4 +68,5 @@ namespace XF_JsonReader.Models
         public List<Post> posts { get; set; }
         public Query query { get; set; }
     }
+
 }
