@@ -32,7 +32,6 @@ Public Class Page2
             .SeparatorVisibility = False}
 
         Me.Title = "Page2"
-        'Me.Padding = New Thickness(10, Device.OnPlatform(20, 0, 0), 10, 0)
-        Content = list
+        Me.Content = list
     End Sub
 End Class
