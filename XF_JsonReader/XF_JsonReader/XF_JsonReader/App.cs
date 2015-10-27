@@ -14,29 +14,8 @@ namespace XF_JsonReader
         {
             var nav = new NavigationPage(new MainPageXaml());
             nav.BarBackgroundColor = Color.FromHex("3498DB");
-            if (Device.OS == TargetPlatform.Windows)
-            {
-                nav.BarTextColor = Color.Black;
-            }
-            else
-            {
-                nav.BarTextColor = Color.White;
-            }
+            nav.BarTextColor = Color.White;
             MainPage = nav;
-
-            #region Windows Phone 用ラベルスタイル
-            if (Device.OS == TargetPlatform.Windows)
-            {
-                Application.Current.Resources = new ResourceDictionary();
-                var labelStyle = new Style(typeof(Label))
-                {
-                    Setters = {
-                        new Setter { Property = Label.FontSizeProperty, Value = 25 },
-                    }
-                };
-                Application.Current.Resources.Add(labelStyle);
-            };
-            #endregion
         }
 
         protected override void OnStart()
