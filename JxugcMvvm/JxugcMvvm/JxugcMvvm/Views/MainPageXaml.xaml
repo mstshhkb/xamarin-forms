@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="JxugcMvvm.Views.MainPageXaml"
+             Title="Mvvm Sample">
+  <Grid Padding="10">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="*" />
+      <ColumnDefinition Width="*" />
+    </Grid.ColumnDefinitions>
+
+    <Button Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Text="Add" Command="{Binding AddCommand}"/>
+
+    <Label Grid.Row="1" Grid.Column="0" Text="{Binding DataCount, StringFormat='{0}個'}" FontSize="Large" HorizontalTextAlignment="Center" />
+    <Label Grid.Row="1" Grid.Column="1" Text="{Binding DataAverage, StringFormat='平均{0:N1}才'}" FontSize="Large" HorizontalTextAlignment="Center" />
+
+    <ListView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding Persons}" HasUnevenRows="True">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <TextCell Text="{Binding Name}" Detail="{Binding Age, StringFormat='{0}才'}" />
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+    
+  </Grid>
+</ContentPage>
