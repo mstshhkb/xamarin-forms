@@ -11,15 +11,15 @@ namespace UnitTestProject1
         {
             var model = XF_ListViewSample.Models.Ramen.Instance;
 
-            //Initialize
-            model.Items.Clear();
-            // 0である
-            Assert.AreEqual(0, model.Items.Count);
+            //InitializeするとItem_1が追加されるので初期状態で1
+            model.Initialize();
+            // 1である
+            Assert.AreEqual(1, model.Items.Count);
 
             // Add Item
             model.AddItem();
-            // 1である
-            Assert.AreEqual(0, model.Items.Count);
+            // 2である
+            Assert.AreEqual(2, model.Items.Count);
         }
     }
 }
