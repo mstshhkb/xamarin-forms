@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:XF_ListViewSample.ViewModels;assembly=XF_ListViewSample"
+             x:Class="XF_ListViewSample.Views.MvvmRamenPage"
+             Title="Custom ListView">
+  <ContentPage.BindingContext>
+    <local:RamenPageViewModel/>
+  </ContentPage.BindingContext>
+
+  <StackLayout>
+    <!-- Buttonを横に配置 -->
+    <StackLayout Orientation="Horizontal"
+                 Padding="8">
+      <Button Text="Add"
+              Command="{Binding AddCommand}"
+              HorizontalOptions="FillAndExpand"/>
+      <Button Text="Delete"
+              Command="{Binding DeleteCommand}"
+              HorizontalOptions="FillAndExpand"/>
+    </StackLayout>
+
+    <!-- CustomCellを使ったListView -->
+    <ListView ItemsSource="{Binding Items}"
+              HasUnevenRows="True">
+      <ListView.ItemTemplate>
+        <DataTemplate>
+          <ViewCell>
+            <!-- Cellの定義 -->
+            <!-- ここではGridを使用します -->
+            <Grid ColumnSpacing="8"
+                  RowSpacing="8">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+              </Grid.ColumnDefinitions>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+              </Grid.RowDefinitions>
+              <!-- Gridを作成して並べ方を指示します -->
+              <Image Grid.RowSpan="2"
+                     Source="{Binding Image}"
+                     WidthRequest="50"
+                     HeightRequest="50"
+                     Margin="8"/>
+              <Label Grid.Column="1"
+                     Grid.Row="0"
+                     Text="{Binding Main}"
+                     FontSize="Large"
+                     TextColor="#000000"
+                     VerticalTextAlignment="Center"/>
+              <Label Grid.Column="1"
+                     Grid.Row="1"
+                     Text="{Binding Sub}"
+                     FontSize="Medium"
+                     VerticalTextAlignment="Center"/>
+              <Label Grid.Column="2"
+                     Grid.Row="0"
+                     Grid.RowSpan="2"
+                     Margin="8,0"
+                     VerticalTextAlignment="Center"
+                     Text=">"/>
+            </Grid>
+          </ViewCell>
+        </DataTemplate>
+      </ListView.ItemTemplate>
+    </ListView>
+
+  </StackLayout>
+</ContentPage>
